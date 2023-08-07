@@ -1,3 +1,5 @@
+import { ProductCategory } from "./product-category";
+
 export class Product {
     id: string;
     sku: string;
@@ -9,8 +11,9 @@ export class Product {
     unitsInStock: number;
     dateCreated: Date;
     lastUpdate: Date;
+    category: ProductCategory
     
-    constructor(id: string, sku: string, name: string, description: string, unitPrice: number,imageUrl: string, active: boolean, unitsInStock: number, dateCreated: Date,lastUpdate: Date)
+    constructor(id: string, sku: string, name: string, description: string, unitPrice: number,imageUrl: string, active: boolean, unitsInStock: number, dateCreated: Date,lastUpdate: Date, category: ProductCategory)
     {
         this.id = id;
         this.sku = sku;
@@ -22,5 +25,6 @@ export class Product {
         this.unitsInStock = unitsInStock;
         this.dateCreated = dateCreated;
         this.lastUpdate = lastUpdate;
+        this.category = category
     }
 }

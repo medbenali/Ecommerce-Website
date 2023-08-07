@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { Product } from '../models/product';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Product } from '../models/product';
 })
 export class ProductService {
 
-  private baseUrl = "http://localhost:8080/products"
+  private baseUrl = "http://localhost:8080/api/products"
 
   constructor(private http: HttpClient) { }
 

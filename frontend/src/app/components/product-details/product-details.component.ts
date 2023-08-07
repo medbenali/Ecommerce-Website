@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { ProductCategory } from 'src/app/models/product-category';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class ProductDetailsComponent implements OnInit {
     active: false,
     unitsInStock: 0,
     dateCreated: new Date(),
-    lastUpdate: new Date()
+    lastUpdate: new Date(),
+    category: new ProductCategory(0, "")
   }
 
 
@@ -42,7 +44,7 @@ export class ProductDetailsComponent implements OnInit {
   {
     this.productService.getProductById(id)
     .subscribe({
-      next : (data) => {
+      next: (data) => {
         this.product = data;
         console.log(data);
       },

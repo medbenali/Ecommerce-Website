@@ -22,7 +22,12 @@ export class ProductListComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.getAllProducts();
+    
+    this.route.paramMap.subscribe(() => {
+      this.getAllProducts();
+    });
+
+  
   }
   
   getAllProducts()

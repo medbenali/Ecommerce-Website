@@ -24,4 +24,8 @@ public class ProductService
     }
 
 
+    public List<Product> searchProductsByName(String name) {
+
+        return productRepository.findByNameContaining(name);
+    }
 }

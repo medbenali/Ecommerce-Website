@@ -15,6 +15,10 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
 
+  currentCategoryId: number = 1;
+
+  currentCategoryName: string= "";
+
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
     private route: ActivatedRoute,
@@ -24,7 +28,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     
     this.route.paramMap.subscribe(() => {
-      this.getAllProducts();
+      this.listProducts();
     });
 
   
@@ -36,6 +40,8 @@ export class ProductListComponent implements OnInit {
 
     const hasCategoryId: boolean = this.route.snapshot.params['id'];
    
+    this.currentCategoryName = this.route.snapshot.params['name'];
+
     if(hasCategoryId)
     {
     
@@ -47,12 +53,34 @@ export class ProductListComponent implements OnInit {
 
     else
     {
-      this.getProducts(); 
+      //this.getProductsByCategoryId(this.currentCategoryId);
+
+      this.getProducts();
+    
       
     }
-  
+    
+    
   }
 
+    listProducts()
+    {
+      const keyWord: string = this.route.snapshot.params['keyword'];
+
+      const searchMode: boolean = this.route.snapshot.paramMap.has('keyword');
+
+    if(searchMode)
+      {
+        this.searchProductsByName(keyWord);
+      }
+
+      else 
+      {
+        this.getAllProducts();
+      }
+
+    }
+  
   getProducts()
   {
     this.productService.getAllProducts()
@@ -68,7 +96,7 @@ export class ProductListComponent implements OnInit {
 
   getProductsByCategoryId(id: number)
   {
-    this.categoryService.getProductsByCategoryId(id)
+    this.categoryService.getAllProductsByCategoryId(id)
     .subscribe({
       next: (data) => {
         this.products = data;
@@ -77,6 +105,20 @@ export class ProductListComponent implements OnInit {
       error: (e) => console.error(e)
     });
   }
+
+
+  searchProductsByName(keyWord: string) 
+  {
+    this.productService.searchProductsByName(keyWord)
+    .subscribe({
+      next: (data) => {
+        this.products = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+  }
+
 
 
 

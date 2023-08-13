@@ -3,10 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.entity.Product;
 import com.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,11 +15,19 @@ public class ProductController
     private ProductService productService;
 
     @GetMapping("/products")
-    public List<Product> getAllProducts()
+    public List<Product> getAllProducts(@RequestParam(required = false) String name)
     {
-        return productService.getAllProducts();
-    }
+        if(name != null)
+        {
+            return productService.searchProductsByName(name);
+        }
 
+        else
+        {
+            return productService.getAllProducts();
+        }
+
+    }
     @GetMapping("/products/{id}")
     public Product getProductById(@PathVariable Long id)
     {

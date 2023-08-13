@@ -8,7 +8,7 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductService {
-
+ 
   private baseUrl = "http://localhost:8080/api/products"
 
   constructor(private http: HttpClient) { }
@@ -24,6 +24,16 @@ export class ProductService {
 
     return this.http.get<Product>(productUrl);
   }
+
+  searchProductsByName(name: string): Observable<Product[]>
+  {
+   
+    const searchUrl = `${this.baseUrl}?name=${name}`;
+
+    return this.http.get<Product[]>(searchUrl);
+  
+  }
+
 
  
 

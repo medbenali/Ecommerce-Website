@@ -4,6 +4,8 @@ import com.ecommerce.entity.Product;
 import com.ecommerce.entity.ProductCategory;
 import com.ecommerce.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +37,18 @@ public class ProductCategoryController {
     {
         return categoryService.getProductByCategoryId(id);
     }
+
+
+    /*
+    @GetMapping("/product-category/{id}/products")
+    public Page<Product> getProductByCategoryId(@PathVariable Long id, Pageable pageable)
+    {
+        return categoryService.getProductByCategoryId(id, pageable);
+    }
+     */
+
+
+
 
 
 }

@@ -1,8 +1,8 @@
-<form class="form-header" onsubmit="return false;" method="GET">
-    <input class="au-input au-input-xl" type="text" name="search"
+<div class="form-header">
+    <input class="au-input au-input-xl" type="text"
         [(ngModel)] = "key"
-        placeholder="Search for data ..." />
-    <button (click)="doSearch(key)" class="au-btn-submit" type="submit">
+        placeholder="Search for products ..." />
+    <button (click)="doSearch(key)" class="au-btn-submit">
         Search
     </button>
-</form>
+</div>

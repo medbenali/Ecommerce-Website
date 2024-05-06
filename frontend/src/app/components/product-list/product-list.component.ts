@@ -19,6 +19,13 @@ export class ProductListComponent implements OnInit {
 
   currentCategoryName: string= "";
 
+  name = '';
+
+  page = 1;
+  count = 0;
+  pageSize = 3;
+  pageSizes = [3, 6, 9];
+
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
     private route: ActivatedRoute,
@@ -38,13 +45,14 @@ export class ProductListComponent implements OnInit {
   {
     const categoryId = this.route.snapshot.params['id'];
 
+    // check if "id" parameter is available
     const hasCategoryId: boolean = this.route.snapshot.params['id'];
    
     this.currentCategoryName = this.route.snapshot.params['name'];
 
     if(hasCategoryId)
     {
-    
+      
       console.log(`currentCategoryId=${categoryId}`);
 
       this.getProductsByCategoryId(categoryId);
@@ -80,11 +88,73 @@ export class ProductListComponent implements OnInit {
       }
 
     }
+
+
+    getRequestParams(searchName: string, page: number, pageSize: number): any {
+      let params: any = {};
   
+      if (searchName) {
+        params[`name`] = searchName;
+      }
+  
+      if (page) {
+        params[`page`] = page - 1;
+      }
+  
+      if (pageSize) {
+        params[`size`] = pageSize;
+      }
+  
+      return params;
+    }
+  
+
+    getProducts()
+    {
+      const params = this.getRequestParams(this.name, this.page, this.pageSize);
+
+      this.productService.getAllProducts(params)
+      .subscribe({ 
+        next: (response) => {
+          const { products, totalItems } = response;
+          this.products = products;
+          this.count = totalItems;
+          console.log(response);
+        },
+        error: (e) => console.error(e)
+      });
+    }
+
+
+ 
+    handlePageChange(event: number): void {
+      this.page = event;
+      this.getProducts();
+    }
+
+
+    updatePageSize(event: any): void {
+      this.pageSize = event.target.value;
+      this.page = 1;
+      this.getProducts();
+    }
+
+
+
+  searchName(): void {
+    this.page = 1;
+    this.getProducts();
+  }
+  
+  
+  
+
+  
+  /*  
   getProducts()
   {
     this.productService.getAllProducts()
-    .subscribe({
+    .subscribe({ 
       next: (data) => {
         this.products = data;
         console.log(data);
@@ -92,7 +162,7 @@ export class ProductListComponent implements OnInit {
       error: (e) => console.error(e)
     });
   }
-
+  */
 
   getProductsByCategoryId(id: number)
   {

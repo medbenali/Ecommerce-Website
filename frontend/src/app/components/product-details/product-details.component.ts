@@ -28,8 +28,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private router: Router){}
+              private route: ActivatedRoute){}
 
   ngOnInit(): void {
     
@@ -40,7 +39,7 @@ export class ProductDetailsComponent implements OnInit {
 
   
     
-  getProductById(id: number)
+  getProductById(id:  number)
   {
     this.productService.getProductById(id)
     .subscribe({

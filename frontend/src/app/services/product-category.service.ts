@@ -13,17 +13,31 @@ export class ProductCategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCategories(): Observable<ProductCategory[]>
-  {
-    return this.http.get<ProductCategory[]>(this.baseUrl);
+
+  getProductCategoryListPaginate(thePage: number,
+    thePageSize: number, categoryId: number): Observable<any> {
+
+    const productUrl = `${this.baseUrl}/${categoryId}/products?page=${thePage}&size=${thePageSize}`;
+
+    return this.http.get<any>(productUrl);
+
   }
 
-  getAllProductsByCategoryId(id: number): Observable<Product[]>
-  {
+   /*
+  getAllProductsByCategoryId(id: number): Observable<Product[]> {
     const productUrl = `${this.baseUrl}/${id}/products`;
 
     return this.http.get<Product[]>(productUrl);
   }
+  */
+
+  
+  getAllCategories(): Observable<ProductCategory[]>
+  {
+    return this.http.get<ProductCategory[]>(this.baseUrl);
+  }
+  
+
 
 
 

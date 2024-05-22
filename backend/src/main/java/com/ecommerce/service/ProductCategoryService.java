@@ -31,14 +31,16 @@ public class ProductCategoryService
     }
 
 
+    /*
     public List<Product> getProductByCategoryId(Long id) {
         return productRepository.findByCategoryId(id);
     }
+     */
 
-    /*
+
     public Page<Product> getProductByCategoryId(Long id, Pageable pageable) {
         return productRepository.findByCategoryId(id, pageable);
     }
-     */
+
 
 }

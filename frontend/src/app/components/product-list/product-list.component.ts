@@ -19,6 +19,8 @@ export class ProductListComponent implements OnInit {
 
   currentCategoryName: string = "";
 
+  previousCategoryId: number = 1;
+
   thePageNumber: number = 1;
   thePageSize: number = 10;
   theTotalElements: number = 0;
@@ -53,11 +55,26 @@ export class ProductListComponent implements OnInit {
 
     if (hasCategoryId) {
 
-      console.log(`currentCategoryId=${categoryId}`);
+      this.currentCategoryId = categoryId;
 
-      this.getProductsByCategoryId(categoryId);
+      
+
+      if(this.previousCategoryId != this.currentCategoryId)
+      {
+      
+        this.thePageNumber = 1;
+      }
+
+      this.previousCategoryId = this.currentCategoryId;
+      
+
+      console.log(`currentCategoryId=${this.currentCategoryId}`);
+
+      this.getProductsByCategoryId(this.currentCategoryId);
 
     }
+
+    
 
     else {
       //this.getProductsByCategoryId(this.currentCategoryId);
@@ -115,6 +132,8 @@ export class ProductListComponent implements OnInit {
   }
   */
 
+
+  /*
   getProductsByCategoryId(id: number) {
     this.categoryService.getAllProductsByCategoryId(id)
       .subscribe({
@@ -125,6 +144,23 @@ export class ProductListComponent implements OnInit {
         error: (e) => console.error(e)
       });
   }
+  */
+
+  getProductsByCategoryId(categoryId: number) {
+    this.categoryService.getProductCategoryListPaginate(this.thePageNumber - 1, this.thePageSize,categoryId)
+    .subscribe({
+      next: (data) => {
+        this.products = data.products;
+        this.thePageNumber = data.number + 1;
+        this.thePageSize = data.size;
+        this.theTotalElements = data.totalElements;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    }); 
+   
+  }
+
 
 
   searchProductsByName(keyWord: string) {

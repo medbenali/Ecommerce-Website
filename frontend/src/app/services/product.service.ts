@@ -8,10 +8,11 @@ import { Product } from '../models/product';
   providedIn: 'root'
 })
 export class ProductService {
- 
+
   private baseUrl = "http://localhost:8080/api/products"
 
   constructor(private http: HttpClient) { }
+
 
   /*
   getAllProducts(): Observable<Product[]>
@@ -19,29 +20,37 @@ export class ProductService {
     return this.http.get<Product[]>(this.baseUrl);
   }
   */
+ 
 
-  getAllProducts(params: any): Observable<any> {
-    return this.http.get<any>(this.baseUrl, { params });
+  getProductListPaginate(thePage: number,
+                         thePageSize: number): Observable<any> {
+
+    const productUrl = `${this.baseUrl}/?page=${thePage}&size=${thePageSize}`;
+
+    return this.http.get<any>(productUrl);
+
   }
 
-  getProductById(id: number): Observable<Product>
-  {
+
+
+  getProductById(id: number): Observable<Product> {
     const productUrl = `${this.baseUrl}/${id}`;
 
     return this.http.get<Product>(productUrl);
   }
 
-  searchProductsByName(name: string): Observable<Product[]>
-  {
-   
+
+
+  searchProductsByName(name: string): Observable<Product[]> {
+
     const searchUrl = `${this.baseUrl}?name=${name}`;
 
     return this.http.get<Product[]>(searchUrl);
-  
+
   }
 
 
- 
+
 
 
 }

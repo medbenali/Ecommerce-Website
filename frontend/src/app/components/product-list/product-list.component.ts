@@ -17,139 +17,90 @@ export class ProductListComponent implements OnInit {
 
   currentCategoryId: number = 1;
 
-  currentCategoryName: string= "";
+  currentCategoryName: string = "";
 
-  name = '';
+  thePageNumber: number = 1;
+  thePageSize: number = 10;
+  theTotalElements: number = 0;
 
-  page = 1;
-  count = 0;
-  pageSize = 3;
-  pageSizes = [3, 6, 9];
+
+
+
+
 
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
     private route: ActivatedRoute,
-    private router: Router){}
+    private router: Router) { }
 
-  
+
   ngOnInit(): void {
-    
+
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
 
-  
+
   }
-  
-  getAllProducts()
-  {
+
+  getAllProducts() {
     const categoryId = this.route.snapshot.params['id'];
 
     // check if "id" parameter is available
     const hasCategoryId: boolean = this.route.snapshot.params['id'];
-   
+
     this.currentCategoryName = this.route.snapshot.params['name'];
 
-    if(hasCategoryId)
-    {
-      
+    if (hasCategoryId) {
+
       console.log(`currentCategoryId=${categoryId}`);
 
       this.getProductsByCategoryId(categoryId);
-        
+
     }
 
-    else
-    {
+    else {
       //this.getProductsByCategoryId(this.currentCategoryId);
 
       this.getProducts();
-    
-      
+
+
     }
-    
-    
+
+
   }
 
-    listProducts()
-    {
-      const keyWord: string = this.route.snapshot.params['keyword'];
+  listProducts() {
+    const keyWord: string = this.route.snapshot.params['keyword'];
 
-      const searchMode: boolean = this.route.snapshot.paramMap.has('keyword');
+    const searchMode: boolean = this.route.snapshot.paramMap.has('keyword');
 
-    if(searchMode)
-      {
-        this.searchProductsByName(keyWord);
-      }
-
-      else 
-      {
-        this.getAllProducts();
-      }
-
+    if (searchMode) {
+      this.searchProductsByName(keyWord);
     }
 
-
-    getRequestParams(searchName: string, page: number, pageSize: number): any {
-      let params: any = {};
-  
-      if (searchName) {
-        params[`name`] = searchName;
-      }
-  
-      if (page) {
-        params[`page`] = page - 1;
-      }
-  
-      if (pageSize) {
-        params[`size`] = pageSize;
-      }
-  
-      return params;
+    else {
+      this.getAllProducts();
     }
-  
 
-    getProducts()
-    {
-      const params = this.getRequestParams(this.name, this.page, this.pageSize);
+  }
 
-      this.productService.getAllProducts(params)
-      .subscribe({ 
-        next: (response) => {
-          const { products, totalItems } = response;
-          this.products = products;
-          this.count = totalItems;
-          console.log(response);
+  getProducts() {
+    this.productService.getProductListPaginate(this.thePageNumber - 1, this.thePageSize)
+      .subscribe({
+        next: (data) => {
+          this.products = data.products;
+          this.thePageNumber = data.number + 1;
+          this.thePageSize = data.size;
+          this.theTotalElements = data.totalElements;
+          console.log(data);
         },
         error: (e) => console.error(e)
-      });
-    }
-
-
+      }); 
  
-    handlePageChange(event: number): void {
-      this.page = event;
-      this.getProducts();
-    }
-
-
-    updatePageSize(event: any): void {
-      this.pageSize = event.target.value;
-      this.page = 1;
-      this.getProducts();
-    }
-
-
-
-  searchName(): void {
-    this.page = 1;
-    this.getProducts();
   }
-  
-  
-  
 
-  
+
   /*  
   getProducts()
   {
@@ -164,29 +115,27 @@ export class ProductListComponent implements OnInit {
   }
   */
 
-  getProductsByCategoryId(id: number)
-  {
+  getProductsByCategoryId(id: number) {
     this.categoryService.getAllProductsByCategoryId(id)
-    .subscribe({
-      next: (data) => {
-        this.products = data;
-        console.log(data);
-      },
-      error: (e) => console.error(e)
-    });
+      .subscribe({
+        next: (data) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
   }
 
 
-  searchProductsByName(keyWord: string) 
-  {
+  searchProductsByName(keyWord: string) {
     this.productService.searchProductsByName(keyWord)
-    .subscribe({
-      next: (data) => {
-        this.products = data;
-        console.log(data);
-      },
-      error: (e) => console.error(e)
-    });
+      .subscribe({
+        next: (data) => {
+          this.products = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
   }
 
 

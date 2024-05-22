@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.entity.Product;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.service.ProductService;
+import com.sun.source.tree.Tree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -45,7 +43,7 @@ public class ProductController
 
 
     @GetMapping("/products")
-    public ResponseEntity<Map<String, Object>> getAllProducts(
+    public ResponseEntity<LinkedHashMap<String, Object>> getAllProducts(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size
@@ -70,11 +68,13 @@ public class ProductController
 
             products = pageProducts.getContent();
 
-            Map<String, Object> response = new HashMap<>();
+            LinkedHashMap<String, Object> response = new LinkedHashMap<>();
             response.put("products", products);
-            response.put("currentPage", pageProducts.getNumber());
-            response.put("totalItems", pageProducts.getTotalElements());
+            response.put("size", pageProducts.getSize());
+            response.put("totalElements", pageProducts.getTotalElements());
             response.put("totalPages", pageProducts.getTotalPages());
+            response.put("number", pageProducts.getNumber());
+
 
             return new ResponseEntity<>(response, HttpStatus.OK);
 

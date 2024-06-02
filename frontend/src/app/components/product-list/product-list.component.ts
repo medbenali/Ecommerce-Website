@@ -25,6 +25,8 @@ export class ProductListComponent implements OnInit {
   thePageSize: number = 5;
   theTotalElements: number = 0;
 
+  previousKeyword: string = "";
+
 
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
@@ -89,7 +91,19 @@ export class ProductListComponent implements OnInit {
     const searchMode: boolean = this.route.snapshot.paramMap.has('keyword');
 
     if (searchMode) {
-      this.searchProductsByName(keyWord);
+
+      if(this.previousKeyword != keyWord)
+      {
+        this.thePageNumber = 1;
+      }
+
+      this.previousKeyword = keyWord;
+
+      console.log(`keyword=${keyWord}, thePageNumber=${this.thePageNumber}`);
+
+      //this.searchProductsByName(keyWord);
+
+      this.searchProductsPaginate(keyWord);
     }
 
     else {
@@ -100,7 +114,12 @@ export class ProductListComponent implements OnInit {
 
   getProducts() {
     this.productService.getProductListPaginate(this.thePageNumber - 1, this.thePageSize)
-      .subscribe({
+    .subscribe({
+      next: (this.processResult())
+    });
+    
+    /*
+    .subscribe({
         next: (data) => {
           this.products = data.products;
           this.thePageNumber = data.number + 1;
@@ -109,7 +128,8 @@ export class ProductListComponent implements OnInit {
           console.log(data);
         },
         error: (e) => console.error(e)
-      }); 
+      });
+      */
  
   }
 
@@ -145,6 +165,11 @@ export class ProductListComponent implements OnInit {
   getProductsByCategoryId(categoryId: number) {
     this.categoryService.getProductCategoryListPaginate(this.thePageNumber - 1, this.thePageSize,categoryId)
     .subscribe({
+      next: (this.processResult())
+    });
+
+    /*
+    .subscribe({
       next: (data) => {
         this.products = data.products;
         this.thePageNumber = data.number + 1;
@@ -153,12 +178,13 @@ export class ProductListComponent implements OnInit {
         console.log(data);
       },
       error: (e) => console.error(e)
-    }); 
+    });
+    */
    
   }
 
 
-
+  /*
   searchProductsByName(keyWord: string) {
     this.productService.searchProductsByName(keyWord)
       .subscribe({
@@ -169,6 +195,35 @@ export class ProductListComponent implements OnInit {
         error: (e) => console.error(e)
       });
   }
+  */
+
+
+  searchProductsPaginate(keyWord: string)
+  {
+    /*
+    this.productService.searchProductsPaginate(this.thePageNumber - 1,this.thePageSize,keyWord)
+    .subscribe({
+      next: (data) => {
+        this.products = data.products;
+        this.thePageNumber = data.number + 1;
+        this.thePageSize = data.size;
+        this.theTotalElements = data.totalElements;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+    */
+
+    this.productService.searchProductsPaginate(this.thePageNumber - 1,this.thePageSize,keyWord)
+    .subscribe({
+      next: (this.processResult())
+    });
+    
+    // works also
+    //.subscribe(this.processResult())
+
+   
+  }
 
 
   updatePageSize(pageSize: string)
@@ -177,6 +232,18 @@ export class ProductListComponent implements OnInit {
     this.thePageNumber = 1;
     this.listProducts();
   }
+
+  processResult()
+  {
+    return (data: any) => {
+      this.products = data.products;
+      this.thePageNumber = data.number + 1;
+      this.thePageSize = data.size;
+      this.theTotalElements = data.totalElements;
+      console.log(data);
+    };
+  }
+  
 
 
 

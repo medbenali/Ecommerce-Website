@@ -53,6 +53,7 @@ public class ProductCategoryController {
     @GetMapping("/product-category/{id}/products")
     public ResponseEntity<LinkedHashMap<String, Object>> getAllProducts(
             @PathVariable long id,
+            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size
     )
@@ -64,8 +65,15 @@ public class ProductCategoryController {
 
             Page<Product> pageProducts;
 
+            if(name == null)
+            {
+                pageProducts = productRepository.findByCategoryId(id, paging);
+            }
 
-            pageProducts = productRepository.findByCategoryId(id, paging);
+            else
+            {
+                pageProducts = productRepository.findByNameContaining(name, paging);
+            }
 
             products = pageProducts.getContent();
 

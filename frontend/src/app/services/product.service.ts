@@ -20,10 +20,10 @@ export class ProductService {
     return this.http.get<Product[]>(this.baseUrl);
   }
   */
- 
+
 
   getProductListPaginate(thePage: number,
-                         thePageSize: number): Observable<any> {
+    thePageSize: number): Observable<any> {
 
     const productUrl = `${this.baseUrl}/?page=${thePage}&size=${thePageSize}`;
 
@@ -46,6 +46,16 @@ export class ProductService {
     const searchUrl = `${this.baseUrl}?name=${name}`;
 
     return this.http.get<Product[]>(searchUrl);
+
+  }
+
+  searchProductsPaginate(thePage: number,
+    thePageSize: number,
+    keyword: string): Observable<any> {
+
+    const searchUrl = `${this.baseUrl}?name=${keyword}&page=${thePage}&size=${thePageSize}`;
+
+    return this.http.get<any>(searchUrl);
 
   }
 

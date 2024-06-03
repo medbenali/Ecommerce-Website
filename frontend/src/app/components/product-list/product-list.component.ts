@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
 
   previousKeyword: string = "";
 
-
+  
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
     private route: ActivatedRoute,
@@ -243,12 +243,13 @@ export class ProductListComponent implements OnInit {
       console.log(data);
     };
   }
+
+  addToCart(product: Product)
+  {
+    console.log(`Adding to cart: ${product.name}, ${product.unitPrice}`); 
+  }
   
 
-
-
-
-
-
+   
 
 }

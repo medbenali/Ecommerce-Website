@@ -1,0 +1,56 @@
+# Commonly Used Docker Commands
+
+docker-compose up
+
+docker-compose up -d
+
+docker-compose up --build (*)
+
+# Build a Docker image from the Dockerfile in the current directory
+docker build -t backend -f backend/Dockerfile .
+
+docker run -d backend
+
+# Run a container and expose a port (host:container)
+docker run -d -p 8080:8080 backend
+
+docker start backend
+
+# List only running containers
+docker ps (*)
+
+docker logs
+
+docker images
+
+==================================================
+
+docker exec -it ecommercewebsite_app_1 /bin/sh
+
+docker exec -it mysql-db bash
+
+mysql -u root -p
+
+show databases;
+
+use full-stack-ecommerce;
+
+select * from product;
+
+==================================================
+
+docker-compose up --build (*)
+
+docker build -t backend .
+
+docker build -t backend -f backend/Dockerfile . (*)
+
+docker build -t frontend . (*)
+
+docker run -d -p 8080:8080 backend
+
+docker run -d -p 4200:4200 frontend (*)
+
+docker run -p 4200:4200 frontend
+
+docker ps

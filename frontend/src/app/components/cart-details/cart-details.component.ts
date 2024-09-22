@@ -18,11 +18,11 @@ export class CartDetailsComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.listCartDeatails();
+    this.listCartDetails();
  
   }
 
-  listCartDeatails()
+  listCartDetails()
   {
     this.cartItems = this.cartService.cartItems;
 

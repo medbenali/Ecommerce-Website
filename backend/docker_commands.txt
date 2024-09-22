@@ -1,0 +1,78 @@
+# Basic Docker Commands
+
+# List Docker containers (running and stopped)
+docker ps -a
+
+# List running Docker containers
+docker ps
+
+# Build a Docker image from a Dockerfile
+docker build -t <image_name> .
+
+# Run a Docker container from an image (default mode)
+docker run <image_name>
+
+# Run a container in detached mode (in the background)
+docker run -d <image_name>
+
+# Run a container with port mapping (host:container)
+docker run -p <host_port>:<container_port> <image_name>
+
+# Run a container with a specific name
+docker run --name <container_name> <image_name>
+
+# Run a container with environment variables
+docker run -e <env_variable>=<value> <image_name>
+
+# Run a container interactively (useful for debugging)
+docker run -it <image_name> /bin/bash
+
+# Run a container and remove it automatically after it stops
+docker run --rm <image_name>
+
+# Mount a host directory as a volume in the container
+docker run -v <host_directory>:<container_directory> <image_name>
+
+# View Docker logs of a container
+docker logs <container_name>
+
+# Stop a running container
+docker stop <container_name>
+
+# Start a stopped container
+docker start <container_name>
+
+# Remove a stopped container
+docker rm <container_name>
+
+# Remove a Docker image
+docker rmi <image_name>
+
+# List all Docker images
+docker images
+
+# Pull an image from Docker Hub
+docker pull <image_name>
+
+# Push an image to Docker Hub
+docker push <image_name>
+
+# Tag an image
+docker tag <image_name> <new_image_name>
+
+# Docker Compose (useful for multi-container applications)
+
+# Start services defined in docker-compose.yml
+docker-compose up
+
+# Start services in detached mode
+docker-compose up -d
+
+# Stop services defined in docker-compose.yml
+docker-compose down
+
+# Build images defined in docker-compose.yml
+docker-compose build
+
+# View the logs of services
+docker-compose logs

@@ -24,6 +24,20 @@ public class ProductController
     @Autowired
     private ProductRepository productRepository;
 
+
+    @GetMapping("/hello")
+    public String hello()
+    {
+        return "Hello World !";
+    }
+
+    @GetMapping("/list")
+    public List<String> myList()
+    {
+        return Arrays.asList("Java","Python","Angular");
+    }
+
+
     /*
     @GetMapping("/products")
     public List<Product> getAllProducts1(@RequestParam(required = false) String name)

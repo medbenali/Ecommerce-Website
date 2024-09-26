@@ -32,8 +32,14 @@ public class Product
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
 
+    @Column(name = "discount_price")
+    private BigDecimal discountPrice;
+
     @Column(name = "image_url")
     private String imageUrl;
+
+    @Column (name = "product_review")
+    private int productReview;
 
     @Column(name = "active")
     private boolean active;
@@ -52,6 +58,22 @@ public class Product
     public Product() {
     }
 
+    public Product(Long id, ProductCategory category, String sku, String name, String description, BigDecimal unitPrice, BigDecimal discountPrice, String imageUrl, int productReview,boolean active, int unitsInStock, Date dateCreated, Date lastUpdated) {
+        this.id = id;
+        this.category = category;
+        this.sku = sku;
+        this.name = name;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.discountPrice = discountPrice;
+        this.imageUrl = imageUrl;
+        this.productReview = productReview;
+        this.active = active;
+        this.unitsInStock = unitsInStock;
+        this.dateCreated = dateCreated;
+        this.lastUpdated = lastUpdated;
+    }
+
     public Product(Long id, ProductCategory category, String sku, String name, String description, BigDecimal unitPrice, String imageUrl, boolean active, int unitsInStock, Date dateCreated, Date lastUpdated) {
         this.id = id;
         this.category = category;
@@ -65,6 +87,7 @@ public class Product
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
     }
+
 
     public Long getId() {
         return id;
@@ -114,8 +137,24 @@ public class Product
         this.unitPrice = unitPrice;
     }
 
+    public BigDecimal getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(BigDecimal discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public int getProductReview() {
+        return productReview;
+    }
+
+    public void setProductReview(int productReview) {
+        this.productReview = productReview;
     }
 
     public void setImageUrl(String imageUrl) {

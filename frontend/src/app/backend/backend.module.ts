@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { BackendRoutingModule } from './backend-routing.module';
 import { SupportComponent } from './components/support/support.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -10,9 +14,13 @@ import { SupportComponent } from './components/support/support.component';
 
 @NgModule({
   declarations: [
-    SupportComponent
+    DashboardComponent,
+    SupportComponent,
+  
   ],
   imports: [
+    CommonModule,
+    FormsModule,
     BackendRoutingModule
   ]
 })

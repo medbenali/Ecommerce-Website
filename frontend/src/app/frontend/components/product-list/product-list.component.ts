@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem } from 'src/app/frontend/models/cart-item';
 import { Product } from 'src/app/frontend/models/product';
-import { CartService } from 'src/app/frontend/services/cart.service';
-import { ProductCategoryService } from 'src/app/frontend/services/product-category.service';
-import { ProductService } from 'src/app/frontend/services/product.service';
+import { ProductCategoryService } from '../../services/product-category.service';
+import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
+
 
 @Component({
   selector: 'app-product-list',
@@ -37,6 +38,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
@@ -114,7 +116,8 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getProductListPaginate(this.thePageNumber - 1, this.thePageSize)
+    ///this.productService.getProductListPaginate(this.thePageNumber - 1, this.thePageSize)
+    this.productService.getProductListPaginate(0, 4)
     .subscribe({
       next: (this.processResult())
     });

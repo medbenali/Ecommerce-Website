@@ -1,0 +1,10 @@
+
+
+
+
+  .success-snackbar {
+    --mdc-snackbar-container-color: green !important;
+    --mdc-snackbar-supporting-text-color: white !important;
+    --mat-mdc-snack-bar-button-color: white !important;
+    white-space: pre-wrap
+  }

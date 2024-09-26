@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FrontendLayoutComponent } from './frontend/components/frontend-layout/frontend-layout.component';
 import { BackendLayoutComponent } from './backend/components/backend-layout/backend-layout.component';
+import { ErrorPageComponent } from './frontend/components/error-page/error-page.component';
 
 
 
@@ -25,6 +26,12 @@ const routes: Routes = [
     pathMatch: 'full' // Default route
    
   },
+  
+  {
+    path: '**',
+    component: ErrorPageComponent
+  }
+
   /*
   {
     path: '**',

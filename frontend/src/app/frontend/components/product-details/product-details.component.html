@@ -13,6 +13,34 @@
                             <!--====== Product Breadcrumb ======-->
                             <div class="pd-breadcrumb u-s-m-b-30">
 
+                                <ul class="pd-breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a  routerLink="/products">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a routerLink="/category/{{ product.category.categoryName }}">{{ product.category.categoryName }}</a>
+                                    
+                                    </li>
+
+                                        <!--
+
+                                    <li class="has-separator">
+
+                                        <a href="shop-side-version-2.html">DSLR Cameras</a>
+                                    
+                                    </li>
+                                    <li class="is-marked">
+
+                                        <a href="shop-side-version-2.html">Nikon Cameras</a>
+                                    </li>
+
+                                    -->
+
+                                </ul>
+
+
+                                <!--
                                 
                                 <ul class="pd-breadcrumb__list">
                                     <li class="has-separator">
@@ -29,7 +57,9 @@
                                         <a href="shop-side-version-2.html">Nikon Cameras</a></li>
                                 </ul>
 
-                                <img class="u-img-fluid" src="../../../../assets/frontend/images/product/product-d-1.jpg">
+                                -->
+
+                                <img class="u-img-fluid" src="{{ product.imageUrl }}">
 
 
                                
@@ -97,13 +127,19 @@
                             <div class="pd-detail">
                                 <div>
 
-                                    <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span></div>
+                                    <span class="pd-detail__name">{{ product.name }}</span></div>
                                 <div>
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__price">$6.99</span>
+                                        <span class="pd-detail__price">{{ product.unitPrice | currency:'USD' }}</span>
 
-                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
+
+
+                                        <span *ngIf="discountPercent" class="pd-detail__discount">({{ discountPercent }}% OFF)</span>
+                                        
+                                        <del *ngIf="discountPercent" class="pd-detail__del">{{ product.discountPrice | currency:'USD' }}</del>
+                                    
+                                    </div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
@@ -115,13 +151,19 @@
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__stock">200 in stock</span>
+                                        <span class="pd-detail__stock">{{ product.unitsInStock }} in stock</span>
 
-                                        <span class="pd-detail__left">Only 2 left</span></div>
+                                        <!--
+
+                                        <span class="pd-detail__left">Only 2 left</span>
+
+                                        -->
+                                    
+                                    </div>
                                 </div>
                                 <div class="u-s-m-b-15">
 
-                                    <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
+                                    <span class="pd-detail__preview-desc">{{ product.description }}</span></div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
@@ -167,26 +209,75 @@
                                                 <!--====== Input Counter ======-->
                                                 <div class="input-counter">
 
+                                                    <!--
+
                                                     <span class="input-counter__minus fas fa-minus"></span>
+
+                                                    -->
+
+                                                    <input type="number" class="form-control" value="1" data-min="1" data-max="1000">
+
+                                                    <!--
+
+                                                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+
+                                                    -->
 
                                                     <!--
 
                                                     <input class="" type="text" value="1" data-min="1" data-max="1000">
 
                                                     -->
+
+                                                    <!--
+
+                                                    <input value="1" data-min="1" data-max="1000">
+
+                                                    -->
+
                                                     
-                                                    
+                                                    <!--
 
                                                     <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
 
-                                                    
+                                                    -->
 
-                                                    <span class="input-counter__plus fas fa-plus"></span></div>
+                                                    <!--
+
+                                                    <span class="input-counter__plus fas fa-plus"></span>
+
+                                                    -->
+                                                
+                                                </div>
                                                 <!--====== End - Input Counter ======-->
                                             </div>
                                             <div class="u-s-m-b-15">
 
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
+                                                
+
+                                                
+                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
+
+                                                
+
+                                                <!--
+
+                                                <a class="btn btn--e-brand-b-2" href="/products">Add to Cart</a>
+
+
+                                                -->
+                                            
+                                            
+                                            </div>
+
+                                                
+
+                                                <!--
+                                                
+                                                <button class="custom-btn" type="button" class="btn btn-warning">Add to Cart</button></div>
+
+                                                -->
+                                                
                                         </div>
                                     </form>
                                 </div>
@@ -239,7 +330,7 @@
                                     <div class="tab-pane fade show active" id="pd-desc">
                                         <div class="pd-tab__desc">
                                             <div class="u-s-m-b-15">
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                <p>{{ product.description }}</p>
                                             </div>
                                             <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
                                             <div class="u-s-m-b-30">

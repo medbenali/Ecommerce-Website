@@ -3,30 +3,44 @@ import { CommonModule } from '@angular/common';
 
 import { FrontendRoutingModule } from './frontend-routing.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
   declarations: [
-    ProductDetailsComponent,
+    ProductListComponent,
     ProductCategoryMenuComponent,
+    ProductDetailsComponent,
     SearchComponent,
     CartStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorPageComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    NgbModule,
     FrontendRoutingModule
-  ]
+   
+  ],
+  //exports: [ ],
 })
 export class FrontendModule implements OnInit { 
 

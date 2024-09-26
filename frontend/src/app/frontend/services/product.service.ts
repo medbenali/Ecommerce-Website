@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
 
 import { Product } from '../models/product';
 
@@ -9,9 +9,13 @@ import { Product } from '../models/product';
 })
 export class ProductService {
 
-  private baseUrl = "http://localhost:8080/api/products"
+  private baseUrl = "http://localhost:8080/api/products";
+  
 
   constructor(private http: HttpClient) { }
+
+
+
 
 
   /*
@@ -28,8 +32,30 @@ export class ProductService {
     const productUrl = `${this.baseUrl}/?page=${thePage}&size=${thePageSize}`;
 
     return this.http.get<any>(productUrl);
+    
 
   }
+
+  /*
+
+
+    return this.http.get<any>(productUrl).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // Log the entire error object for detailed information
+        console.error('Error fetching data:', error);
+
+        // Optional: Log specific properties
+        console.error('Error Status:', error.status); // HTTP status code
+        console.error('Error Message:', error.message); // Error message
+        console.error('Error Body:', error.error); // Response body if available
+
+        // Return an observable with a user-facing error message
+        return throwError('Something went wrong; please try again later.');
+      })
+    );
+
+
+  */
 
 
 

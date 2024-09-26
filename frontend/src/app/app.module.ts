@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { FrontendLayoutComponent } from './frontend/components/frontend-layout/frontend-layout.component';
 import { BackendLayoutComponent } from './backend/components/backend-layout/backend-layout.component';
 import { MenuComponent } from './backend/components/menu/menu.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -25,7 +25,7 @@ import { MenuComponent } from './backend/components/menu/menu.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

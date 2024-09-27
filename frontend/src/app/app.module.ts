@@ -10,6 +10,9 @@ import { FrontendLayoutComponent } from './frontend/components/frontend-layout/f
 import { BackendLayoutComponent } from './backend/components/backend-layout/backend-layout.component';
 import { MenuComponent } from './backend/components/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchComponent } from './frontend/components/search/search.component';
+import { CartStatusComponent } from './frontend/components/cart-status/cart-status.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -17,17 +20,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     MenuComponent,
+    SearchComponent,
+    CartStatusComponent,
     FrontendLayoutComponent,
     BackendLayoutComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,SearchComponent,CartStatusComponent]
+
 })
 export class AppModule { }

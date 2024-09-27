@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/frontend/services/cart.service';
+import { CartItem } from '../../models/cart-item';
 
 @Component({
   selector: 'app-cart-status',
@@ -8,6 +9,7 @@ import { CartService } from 'src/app/frontend/services/cart.service';
 })
 export class CartStatusComponent implements OnInit {
 
+  cartItems: CartItem[] = [];
   totalPrice: number = 0.00;
   totalQuantity: number = 0;
 
@@ -20,6 +22,8 @@ export class CartStatusComponent implements OnInit {
 
   updateCartStatus()
   {
+    this.cartItems = this.cartService.cartItems;
+    
     this.cartService.totalPrice
     .subscribe({ 
       next: (data) => {

@@ -19,7 +19,7 @@ export class CartService {
     // check if we already have the item in our cart
 
     let alreadyExistsInCart: boolean = false;
-    let existingCartItem: CartItem = new CartItem("","","",0);
+    let existingCartItem: CartItem = new CartItem("","","",0,"");
 
     if(this.cartItems.length > 0)
     {

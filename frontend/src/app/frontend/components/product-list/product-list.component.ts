@@ -28,6 +28,12 @@ export class ProductListComponent implements OnInit {
 
   previousKeyword: string = "";
 
+  keyWord: string="";
+
+  keyWordCount: number = 0;
+
+
+
   
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
@@ -88,25 +94,34 @@ export class ProductListComponent implements OnInit {
 
   }
 
+  
+
   listProducts() {
-    const keyWord: string = this.route.snapshot.params['keyword'];
+    this.keyWord= this.route.snapshot.params['keyword'];
 
     const searchMode: boolean = this.route.snapshot.paramMap.has('keyword');
 
     if (searchMode) {
 
-      if(this.previousKeyword != keyWord)
+      if(this.previousKeyword != this.keyWord)
       {
         this.thePageNumber = 1;
       }
 
-      this.previousKeyword = keyWord;
+      this.previousKeyword = this.keyWord;
 
-      console.log(`keyword=${keyWord}, thePageNumber=${this.thePageNumber}`);
+
+
+
+      console.log(`keyword=${this.keyWord}, thePageNumber=${this.thePageNumber}`);
 
       //this.searchProductsByName(keyWord);
 
-      this.searchProductsPaginate(keyWord);
+      this.searchProductsPaginate(this.keyWord);
+
+      this.countKeyWordOccurrences();
+
+
     }
 
     else {
@@ -114,6 +129,13 @@ export class ProductListComponent implements OnInit {
     }
 
   }
+
+  countKeyWordOccurrences() {
+    const regex = new RegExp(this.keyWord, 'gi'); // Create a case-insensitive search
+    this.keyWordCount = (this.keyWord.match(regex) || []).length;
+  }
+
+
 
   getProducts() {
     ///this.productService.getProductListPaginate(this.thePageNumber - 1, this.thePageSize)
@@ -252,7 +274,7 @@ export class ProductListComponent implements OnInit {
   {
     console.log(`Adding to cart: ${product.name}, ${product.unitPrice}`);
 
-    const cartItem = new CartItem(product.id, product.name, product.imageUrl, product.unitPrice);
+    const cartItem = new CartItem(product.id, product.name, product.imageUrl, product.unitPrice,product.category.categoryName);
 
     this.cartService.addToCart(cartItem); 
   }

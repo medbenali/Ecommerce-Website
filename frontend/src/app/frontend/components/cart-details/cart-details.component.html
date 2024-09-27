@@ -1,51 +1,219 @@
-<div class="main-content">
-    <div class="section-content section-content-p30">
-        <div class="container-fluid">
 
-            <table class="table table-bordered">
-                <tr>
-                    <th width="20%">Product Image</th>
-                    <th width="50%">Product Detail</th>
-                    <th width="30%"></th>
-                </tr>
 
-                <tr *ngFor="let cartItem of cartItems">
-                    <td><img src="{{ cartItem.imageUrl }}" class="img-responsive"
-                            width="150px"></td>
-                    <td>
-                        <p>{{ cartItem.name }}</p>
-                        <p>{{ cartItem.unitPrice | currency: 'USD' }}</p>
-                    </td>
-                    <td>
-                        <div class="items">
-                            <label>Quantity:</label>
-                            {{ cartItem.quantity }}
-                            <!--
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                            -->
+
+  
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="cart.html">Cart</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <p>Subtotal: {{ cartItem.quantity * cartItem.unitPrice | currency: 'USD' }}</p>
-                        <a href="#" class="primary-btn">Remove</a>
-                    </td>
-                </tr>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
 
-                <tr>
-                    <td colspan="2"></td>
-                    <td style="font-weight: bold">
-                        <p>Total Quantity:{{ totalQuantity }}</p>
-                        <p>Shipping: FREE</p>
-                        <p>Total Price: {{ totalPrice | currency: 'USD' }}</p>
-                        <a href="checkout-page.html" class="primary-btn">Checkout</a>
-                    </td>
-                </tr>
 
-            </table>
+            <!--====== Section 2 ======-->
+            <div class="u-s-p-b-60">
 
-        </div>
-    </div>
-</div>
+                <!--====== Section Intro ======-->
+                <div class="section__intro u-s-m-b-60">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section__text-wrap">
+                                    <h1 class="section__heading u-c-secondary">SHOPPING CART</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Intro ======-->
+
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
+                                <div class="table-responsive">
+                                    <table class="table-p">
+                                        <tbody>
+
+                                            <!--====== Row ======-->
+                                            <tr *ngFor="let cartItem of cartItems">
+                                                <td>
+                                                    <div class="table-p__box">
+                                                        <div class="table-p__img-wrap">
+
+                                                            <img class="u-img-fluid" src="{{ cartItem.imageUrl }}" alt=""></div>
+                                                        <div class="table-p__info">
+
+                                                            <span class="table-p__name">
+
+                                                                <a href="/products/{{ cartItem.id }}">{{ cartItem.name }}</a></span>
+
+                                                            <span class="table-p__category">
+
+                                                                <a href="/category/{{ cartItem.category }}">{{ cartItem.category }}</a>
+                                                            
+                                                            </span>
+
+                                                            <!--
+
+                                                            <ul class="table-p__variant-list">
+                                                                <li>
+
+                                                                    <span>Size: 22</span></li>
+                                                                <li>
+
+                                                                    <span>Color: Red</span></li>
+                                                            </ul>
+
+                                                            -->
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <span class="table-p__price">{{ cartItem.unitPrice | currency: 'USD' }}</span></td>
+                                                <td>
+                                                    <div class="table-p__input-counter-wrap">
+
+                                                        <!--====== Input Counter ======-->
+                                                        <div class="input-counter">
+
+                                                            <!--
+
+                                                            <span class="input-counter__minus fas fa-minus"></span>
+
+                                                            -->
+
+                                                            <input class="form-control" type="number" value="{{ cartItem.quantity }}" data-min="1" data-max="1000">
+
+                                                            <!--
+
+                                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+
+                                                            <span class="input-counter__plus fas fa-plus"></span>
+
+                                                            -->
+                                                        
+                                                        </div>
+                                                        <!--====== End - Input Counter ======-->
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="table-p__del-wrap">
+
+                                                        <a class="far fa-trash-alt table-p__delete-link" href="#"></a></div>
+                                                </td>
+                                            </tr>
+                                            <!--====== End - Row ======-->
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="route-box">
+                                    <div class="route-box__g1">
+
+                                        <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+
+                                            <span>CONTINUE SHOPPING</span></a></div>
+                                    <div class="route-box__g2">
+
+                                        <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>
+
+                                            <span>CLEAR CART</span></a>
+
+                                        <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>
+
+                                            <span>UPDATE CART</span></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 2 ======-->
+
+
+            <!--====== Section 3 ======-->
+            <div class="u-s-p-b-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
+                                <form class="f-cart">
+                                    <div class="row">
+                                     
+                                       
+                                        
+                                        
+
+                                  
+                                 
+                                    
+
+                                        <div class="col-lg-12">
+                                            <div class="f-cart__pad-box">
+                                                <div class="u-s-m-b-30">
+                                                    <table class="f-cart__table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>SHIPPING</td>
+                                                                <td>FREE</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>TAX</td>
+                                                                <td>$0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>SUBTOTAL</td>
+                                                                <td>{{ totalPrice | currency: 'USD' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GRAND TOTAL</td>
+                                                                <td>{{ totalPrice | currency: 'USD' }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div>
+
+                                                    <button routerLink="/checkout" class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 3 ======-->
+
+
+   

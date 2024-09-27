@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { FrontendRoutingModule } from './frontend-routing.module';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { SearchComponent } from './components/search/search.component';
-import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
@@ -23,8 +21,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ProductListComponent,
     ProductCategoryMenuComponent,
     ProductDetailsComponent,
-    SearchComponent,
-    CartStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
     HomeComponent,

@@ -1,8 +1,129 @@
-<div class="cart-area d-n">
-    <a routerLink="/cart-details">
-        <div class="total">{{ totalPrice | currency: 'USD' }}
-            <span>{{ totalQuantity}}</span>
+
+
+
+
+       <!--====== Dropdown Main plugin ======-->
+       <div class="menu-init" id="navigation3">
+
+        <button class="btn btn--icon toggle-button toggle-button--secondary fas fa-shopping-bag toggle-button-shop" type="button"></button>
+
+        <span class="total-item-round">{{ totalQuantity }}</span>
+
+        <!--====== Menu ======-->
+        <div class="ah-lg-mode">
+
+            <span class="ah-close">✕ Close</span>
+
+            <!--====== List ======-->
+            <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
+                <li>
+
+                    <a href="index.html"><i class="fas fa-home u-c-brand"></i></a></li>
+                <li>
+
+                    <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                <li class="has-dropdown">
+
+                    <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+
+                        <span class="total-item-round">{{ totalQuantity }}</span></a>
+
+                    <!--====== Dropdown ======-->
+
+                    <span class="js-menu-toggle"></span>
+                    <div class="mini-cart">
+
+                        <!--====== Mini Product Container ======-->
+                        <div class="mini-product-container gl-scroll u-s-m-b-15">
+
+                            <!--====== Card for mini cart ======-->
+                            <!--
+                            <div class="card-mini-product">
+                                <div class="mini-product">
+                                    <div class="mini-product__image-wrapper">
+
+                                        <a class="mini-product__link" href="product-detail.html">
+
+                                            <img class="u-img-fluid" src="assets/frontend/images/product/electronic/product3.jpg" alt=""></a></div>
+                                    <div class="mini-product__info-wrapper">
+
+                                        <span class="mini-product__category">
+
+                                            <a href="shop-side-version-2.html">Electronics</a></span>
+
+                                        <span class="mini-product__name">
+
+                                            <a href="product-detail.html">Yellow Wireless Headphone</a></span>
+
+                                        <span class="mini-product__quantity">1 x</span>
+
+                                        <span class="mini-product__price">$8</span></div>
+                                </div>
+
+                                <a class="mini-product__delete-link far fa-trash-alt"></a>
+                            </div>
+
+                            -->
+                            
+                            <!--====== End - Card for mini cart ======-->
+
+                                        <!--====== Card for mini cart ======-->
+                                        <div *ngFor="let cartItem of cartItems" class="card-mini-product">
+                                            <div class="mini-product">
+                                                <div class="mini-product__image-wrapper">
+            
+                                                    <a class="mini-product__link" href="/products/{{ cartItem.id }}">
+            
+                                                        <img class="u-img-fluid" src="{{ cartItem.imageUrl }}" alt=""></a></div>
+                                                <div class="mini-product__info-wrapper">
+            
+                                                    <span class="mini-product__category">
+            
+                                                        <a href="/category/{{ cartItem.category }}">{{ cartItem.category }}</a></span>
+            
+                                                    <span class="mini-product__name">
+            
+                                                        <a href="/products/{{ cartItem.id }}">{{ cartItem.name }}</a></span>
+            
+                                                    <span class="mini-product__quantity">{{ cartItem.quantity }} x</span>
+            
+                                                    <span class="mini-product__price">{{ cartItem.unitPrice | currency: 'USD' }}</span></div>
+                                            </div>
+            
+                                            <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                        </div>
+                                        <!--====== End - Card for mini cart ======-->
+
+
+                         
+
+
+
+                            <!--====== End - Card for mini cart ======-->
+                        </div>
+                        <!--====== End - Mini Product Container ======-->
+
+
+                        <!--====== Mini Product Statistics ======-->
+                        <div class="mini-product-stat">
+                            <div class="mini-total">
+
+                                <span class="subtotal-text">SUBTOTAL</span>
+
+                                <span class="subtotal-value">{{ totalPrice | currency: 'USD' }}</span></div>
+                            <div class="mini-action">
+
+                                <a routerLink="/checkout" class="mini-link btn--e-brand-b-2">PROCEED TO CHECKOUT</a>
+
+                                <a routerLink="/cart-details" class="mini-link btn--e-transparent-secondary-b-2">VIEW CART</a></div>
+                        </div>
+                        <!--====== End - Mini Product Statistics ======-->
+                    </div>
+                    <!--====== End - Dropdown ======-->
+                </li>
+            </ul>
+            <!--====== End - List ======-->
         </div>
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-    </a>
-</div>
+        <!--====== End - Menu ======-->
+    </div>
+    <!--====== End - Dropdown Main plugin ======-->

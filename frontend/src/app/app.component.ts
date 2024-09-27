@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,8 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'frontend';
+
+
 
   
   

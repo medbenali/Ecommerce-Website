@@ -16,6 +16,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/products")
 public class ProductController
 {
     @Autowired
@@ -56,7 +57,7 @@ public class ProductController
      */
 
 
-    @GetMapping("/products")
+    @GetMapping("")
     public ResponseEntity<LinkedHashMap<String, Object>> getAllProducts(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
@@ -100,7 +101,7 @@ public class ProductController
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id)
     {
         return productService.getProductById(id);

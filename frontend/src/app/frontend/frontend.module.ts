@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
@@ -25,7 +29,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CheckoutComponent,
     HomeComponent,
     ErrorPageComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,

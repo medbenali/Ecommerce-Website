@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(value = "http://localhost:4200", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController

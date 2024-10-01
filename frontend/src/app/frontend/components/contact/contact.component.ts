@@ -41,7 +41,17 @@ export class ContactComponent
           {
             console.log(res);
             this.openSnackBar('Your message was successfully sent!', 'X');
+
+            /*
+
+            this.router.navigate(['/']).then(() => {
+              window.location.reload(); 
+            });
+
+            */
+
             this.router.navigate(['/']);
+            
           },
           error: (e) => console.error(e)
         });

@@ -17,7 +17,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(value = "http://localhost:4200", allowCredentials = "true")
+@RequestMapping("/api/product-category")
 public class ProductCategoryController {
 
     @Autowired
@@ -26,13 +27,13 @@ public class ProductCategoryController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/product-category")
+    @GetMapping("")
     public List<ProductCategory> getAllCategories()
     {
         return categoryService.getAllCategories();
     }
 
-    @GetMapping("/product-category/{id}")
+    @GetMapping("/{id}")
     public ProductCategory getCategoryById(@PathVariable Long id)
     {
         return categoryService.getCategoryById(id);
@@ -50,7 +51,7 @@ public class ProductCategoryController {
 
 
 
-    @GetMapping("/product-category/{id}/products")
+    @GetMapping("{id}/products")
     public ResponseEntity<LinkedHashMap<String, Object>> getAllProducts(
             @PathVariable long id,
             @RequestParam(required = false) String name,

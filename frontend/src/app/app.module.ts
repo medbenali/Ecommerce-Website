@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './frontend/components/search/search.component';
 import { CartStatusComponent } from './frontend/components/cart-status/cart-status.component';
 import { CommonModule } from '@angular/common';
+import { httpInterceptorProviders } from './frontend/_helpers/http.interceptor';
 
 
 
@@ -33,7 +34,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent,SearchComponent,CartStatusComponent]
 
 })

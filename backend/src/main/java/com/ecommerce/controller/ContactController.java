@@ -3,19 +3,17 @@ package com.ecommerce.controller;
 import com.ecommerce.entity.Contact;
 import com.ecommerce.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(value = "http://localhost:4200", allowCredentials = "true")
 @RestController
-@CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/contact")
 public class ContactController {
 
     @Autowired
     private ContactService contactService;
 
-    @PostMapping("/contact")
+    @PostMapping("")
     public void addContact(@RequestBody Contact contact)
     {
         contactService.addContact(contact);

@@ -6,9 +6,19 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ContactComponent } from './components/contact/contact.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './guard/auth.guard';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'profile', component: ProfileComponent},
+  //{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'products/:id', component: ProductDetailsComponent},

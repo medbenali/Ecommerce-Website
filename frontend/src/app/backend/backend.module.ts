@@ -79,7 +79,13 @@ export class BackendModule {
 
   // Method to load styles and scripts dynamically
   loadBackendStylesAndScripts() {
+
+
+
+
     const head = document.getElementsByTagName('head')[0];
+
+    //this.addBaseHrefTag();
 
     
 
@@ -107,6 +113,23 @@ export class BackendModule {
 
     document.body.appendChild(script);
 
+
+
+
+
+  }
+
+  addBaseHrefTag() {
+
+    
+    const head = document.getElementsByTagName('head')[0];
+
+    const baseElement = document.createElement('base'); 
+ 
+
+    baseElement.setAttribute('href', '/');
+
+    head.appendChild(baseElement);
 
 
   }

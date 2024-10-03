@@ -18,6 +18,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { FilterUniquePipe } from './pipes/filter-unique.pipe';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    LogoutComponent
+    LogoutComponent,
+    WishlistComponent,
+    FilterUniquePipe
   ],
   imports: [
     CommonModule,

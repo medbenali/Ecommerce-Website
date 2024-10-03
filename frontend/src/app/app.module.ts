@@ -16,7 +16,6 @@ import { CommonModule } from '@angular/common';
 import { httpInterceptorProviders } from './frontend/_helpers/http.interceptor';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

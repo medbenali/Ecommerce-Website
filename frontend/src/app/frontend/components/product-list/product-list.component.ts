@@ -5,6 +5,7 @@ import { Product } from 'src/app/frontend/models/product';
 import { ProductCategoryService } from '../../services/product-category.service';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 
 @Component({
@@ -32,12 +33,15 @@ export class ProductListComponent implements OnInit {
 
   keyWordCount: number = 0;
 
+  wishlist: Product[] = [];
+
 
 
   
   constructor(private productService: ProductService,
     private categoryService: ProductCategoryService,
     private cartService: CartService,
+    private wishlistService: WishlistService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -120,6 +124,7 @@ export class ProductListComponent implements OnInit {
       this.searchProductsPaginate(this.keyWord);
 
       this.countKeyWordOccurrences();
+      
 
 
     }
@@ -277,6 +282,20 @@ export class ProductListComponent implements OnInit {
     const cartItem = new CartItem(product.id, product.name, product.imageUrl, product.unitPrice,product.category.categoryName);
 
     this.cartService.addToCart(cartItem); 
+  }
+
+  addToWishlist(product: Product)
+  {
+    console.log(`Adding to wishlist: ${product.name}, ${product.unitPrice}`);
+
+    this.wishlist.push(product);
+
+    this.wishlistService.saveProduct(this.wishlist);
+  }
+
+  isWishlisted(product: Product)
+  {
+    //return this.wishlistService.isWishlisted(product);
   }
   
 
